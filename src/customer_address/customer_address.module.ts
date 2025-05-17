@@ -18,5 +18,6 @@ import {
   ],
   controllers: [CustomerAddressController],
   providers: [CustomerAddressService],
+  exports: [CustomerAddressService],
 })
 export class CustomerAddressModule {}

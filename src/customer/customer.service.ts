@@ -9,25 +9,32 @@ import * as bcrypt from "bcrypt"
 
 @Injectable()
 export class CustomerService {
-  constructor (
-    @InjectModel(Customer.name) private readonly customerSchema: Model<Customer>,
-  ){}
+  constructor(
+    @InjectModel(Customer.name) private readonly customerSchema: Model<Customer>
+  ) {}
   async create(createCustomerDto: CreateCustomerDto) {
-    const {password, confirm_password, email, } = createCustomerDto
-    const customer = await this.customerSchema.findOne({email})
-    if(customer){
-      throw new BadRequestException("Bunday emailli custormer mavjud!")
+    const { password, confirm_password, email } = createCustomerDto;
+    const customer = await this.customerSchema.findOne({ email });
+    if (customer) {
+      throw new BadRequestException("Bunday emailli custormer mavjud!");
     }
-    if(password !== confirm_password){
-      throw new BadRequestException("Parollar mos emas!")
+    if (password !== confirm_password) {
+      throw new BadRequestException("Parollar mos emas!");
     }
 
-    const hashed_password = await bcrypt.hash(password, 7)
-    return this.customerSchema.create({...createCustomerDto, hashed_password});
+    const hashed_password = await bcrypt.hash(password, 7);
+    return this.customerSchema.create({
+      ...createCustomerDto,
+      hashed_password,
+    });
   }
 
   findAll() {
     return this.customerSchema.find();
+  }
+
+  findByEmail(email: string) {
+    return this.customerSchema.findOne({ email });
   }
 
   findOne(id: string) {
@@ -35,7 +42,9 @@ export class CustomerService {
   }
 
   update(id: string, updateCustomerDto: UpdateCustomerDto) {
-    return this.customerSchema.findByIdAndUpdate(id, updateCustomerDto, {new: true});
+    return this.customerSchema.findByIdAndUpdate(id, updateCustomerDto, {
+      new: true,
+    });
   }
 
   remove(id: string) {

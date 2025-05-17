@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument, Types } from "mongoose";
+import mongoose, { HydratedDocument, Types } from "mongoose";
 
 export type CustomerAddressDocument = HydratedDocument<CustomerAddress>;
 
@@ -7,14 +7,15 @@ export type CustomerAddressDocument = HydratedDocument<CustomerAddress>;
 export class CustomerAddress {
   @Prop()
   name: string;
-  @Prop()
-  customer_id: string;
+  
+  @Prop({ type: mongoose.Types.ObjectId, ref: "Customer" })
+  customerId: string;
 
-  @Prop()
-  region_id: string;
+  @Prop({ type: mongoose.Types.ObjectId, ref: "Region" })
+  regionId: string;
 
-  @Prop()
-  cdistrict_id: string;
+  @Prop({ type: mongoose.Types.ObjectId, ref: "District" })
+  districtId: string;
 
   @Prop()
   street: string;
@@ -33,8 +34,6 @@ export class CustomerAddress {
 
   @Prop()
   info: string;
-
-  
 }
 
 export const CustomerAddressSchema =

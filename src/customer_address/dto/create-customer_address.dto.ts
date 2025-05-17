@@ -1,8 +1,8 @@
 export class CreateCustomerAddressDto {
   name: string;
-  customer_id: string;
-  region_id: string;
-  district_id: string;
+  customerId: string;
+  regionId: string;
+  districtId: string;
   street: string;
   house: string;
   flat: number;

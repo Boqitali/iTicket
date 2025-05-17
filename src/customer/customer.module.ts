@@ -16,5 +16,6 @@ import { CustomerAddress, CustomerAddressSchema } from "../customer_address/sche
   ],
   controllers: [CustomerController],
   providers: [CustomerService],
+  exports: [CustomerService],
 })
 export class CustomerModule {}
