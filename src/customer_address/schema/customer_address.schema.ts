@@ -7,7 +7,7 @@ export type CustomerAddressDocument = HydratedDocument<CustomerAddress>;
 export class CustomerAddress {
   @Prop()
   name: string;
-  
+
   @Prop({ type: mongoose.Types.ObjectId, ref: "Customer" })
   customerId: string;
 
