@@ -20,6 +20,11 @@ import { EventTypeModule } from './event_type/event_type.module';
 import { HumanCategoryModule } from './human_category/human_category.module';
 import { TicketModule } from './ticket/ticket.module';
 import { TicketStatusModule } from './ticket_status/ticket_status.module';
+import { CartModule } from './cart/cart.module';
+import { CartItemModule } from './cart_item/cart_item.module';
+import { BokingModule } from './boking/boking.module';
+import { PaymentMethodModule } from './payment_method/payment_method.module';
+import { DeliveryMethodModule } from './delivery_method/delivery_method.module';
 
 @Module({
   imports: [
@@ -44,6 +49,11 @@ import { TicketStatusModule } from './ticket_status/ticket_status.module';
     HumanCategoryModule,
     TicketModule,
     TicketStatusModule,
+    CartModule,
+    CartItemModule,
+    BokingModule,
+    PaymentMethodModule,
+    DeliveryMethodModule,
   ],
   controllers: [],
   providers: [],
